@@ -4,8 +4,11 @@ export default function () {
 	let obj = {
 		vendor: window.navigator.vendor,
 			touchscreen: getTouchscreen(),
-			// @ts-ignore
-			cpu: window.navigator.oscpu || "",
+			cpu: {
+				// @ts-ignore
+				name: window.navigator.oscpu || "",
+				cores: window.navigator.hardwareConcurrency || ""
+			},
 			sizes: {
 			usable: {
 				height: window.outerHeight,
@@ -13,7 +16,7 @@ export default function () {
 			},
 			screen: {
 				height: screen.height,
-					width: screen.width
+				width: screen.width
 			}
 		},
 		colorDepth: screen.colorDepth
