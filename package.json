@@ -1,0 +1,14 @@
+{
+  "name": "BrowserTracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.7.4"
+  }
+}
