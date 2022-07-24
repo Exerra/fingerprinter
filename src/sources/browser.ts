@@ -16,7 +16,8 @@ export default async function () {
 		})
 	}
 
-	let obj: any = {
+	return {
+		vendor: window.navigator.vendor || "",
 		language: {
 			current: nav.language,
 			list: nav.languages
@@ -29,6 +30,4 @@ export default async function () {
 		},
 		mimeTypes: mimetypes || []
 	}
-
-	return obj
 }
