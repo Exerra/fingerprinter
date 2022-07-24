@@ -36,8 +36,8 @@ const asyncFunc = async () => {
 		browser,
 		device,
 		timezone,
-		fonts: await fonts(),
-		audio: await audio()
+		audio: await audio(),
+		fonts: await fonts()
 	}
 
 	let it = document.fonts.entries()
