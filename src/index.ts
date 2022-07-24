@@ -33,7 +33,7 @@ function syntaxHighlight(json) { // I lifted off of stack overflow and I do not 
 	});
 }
 
-const asyncFunc = async () => {
+const getRawFingerprint = async () => {
 	let browser = await getBrowserInfo()
 	let timezone = getTimezoneInfo()
 	let device = getDeviceInfo()
@@ -47,7 +47,7 @@ const asyncFunc = async () => {
 	device.color.hdr = hdr()
 	device.color.monochromeDepth = monochrome()
 
-	let final = {
+	return {
 		browser,
 		device,
 		timezone,
@@ -57,19 +57,10 @@ const asyncFunc = async () => {
 		math: math(),
 		fonts: await fonts()
 	}
+}
 
-	let it = document.fonts.entries()
-	let arr: any[] = []
-	let done = false
-
-	while (!done) {
-		const font = it.next()
-		if (!font.done) {
-			arr.push(font.value[0])
-		} else {
-			done = font.done
-		}
-	}
+const display = async () => {
+	let final = await getRawFingerprint()
 
 	let encoded = await encode(JSON.stringify(final))
 
@@ -78,4 +69,14 @@ const asyncFunc = async () => {
 	document.getElementById("json").innerHTML = syntaxHighlight(JSON.stringify(final, undefined, 4))
 }
 
-asyncFunc()
+window["fingerprint"] = {
+	getRaw: getRawFingerprint,
+	get: async () => {
+		console.log(getRawFingerprint())
+		let final = await getRawFingerprint()
+		return await encode( JSON.stringify(final) )
+	}
+}
+
+
+display()
