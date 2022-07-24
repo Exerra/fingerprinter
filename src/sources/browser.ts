@@ -26,9 +26,16 @@ export default async function () {
 		plugins,
 		capabilities: {
 			contacts: 'contacts' in navigator && 'ContactsManager' in window,
-			pdfViewer: nav.pdfViewerEnabled || false
+			pdfViewer: nav.pdfViewerEnabled || false,
+			cookies: nav.cookieEnabled || false
 		},
 		mimeTypes: mimetypes || [],
-		canvas: ""
+		canvas: "",
+		bars: {
+			menubar: window.menubar.visible || "",
+			personalbar: window.personalbar.visible || "",
+			statusbar: window.statusbar.visible || "",
+			toolbar: window.toolbar.visible || ""
+		}
 	}
 }
