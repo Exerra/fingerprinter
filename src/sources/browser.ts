@@ -28,6 +28,7 @@ export default async function () {
 			contacts: 'contacts' in navigator && 'ContactsManager' in window,
 			pdfViewer: nav.pdfViewerEnabled || false
 		},
-		mimeTypes: mimetypes || []
+		mimeTypes: mimetypes || [],
+		canvas: ""
 	}
 }

@@ -6,12 +6,12 @@ export default function () {
 		cpu: {
 			// @ts-ignore
 			name: window.navigator.oscpu || "",
-			cores: window.navigator.hardwareConcurrency || ""
+			cores: window.navigator.hardwareConcurrency || 0
 		},
 		sizes: {
 			usable: {
 				height: window.outerHeight,
-					width: window.outerWidth,
+				width: window.outerWidth,
 			},
 			screen: {
 				height: screen.height,
