@@ -36,6 +36,7 @@ const asyncFunc = async () => {
 
 	console.log(final)
 	document.getElementById("encoded").innerText = encoded
+	document.getElementById("json").innerText = JSON.stringify(final, undefined, 4)
 }
 
 asyncFunc()
