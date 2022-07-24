@@ -16,6 +16,7 @@ const asyncFunc = async () => {
 		browser,
 		device,
 		timezone,
+		fonts: await fonts()
 	}
 
 	let it = document.fonts.entries()
