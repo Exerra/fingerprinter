@@ -22,7 +22,7 @@ export default async function () {
 
 	const hashFromIndex = 4500
 	const hashToIndex = 5000
-	const context = new audioContext(1, hashToIndex, 44100)
+	const context = new audioContext( 1, hashToIndex, 44100 )
 
 	const oscillator = context.createOscillator()
 	oscillator.type = "triangle"
@@ -35,11 +35,11 @@ export default async function () {
 	compressor.attack.value = 0
 	compressor.release.value = 0.25
 
-	oscillator.connect(compressor)
-	oscillator.connect(context.destination)
-	oscillator.start(0)
+	oscillator.connect( compressor )
+	oscillator.connect( context.destination )
+	oscillator.start( 0 )
 
-	const [renderPromise, finishRendering] = startRenderingAudio(context)
+	const [ renderPromise, finishRendering ] = startRenderingAudio( context )
 
 	await finishRendering()
 	let data = await renderPromise
@@ -52,14 +52,14 @@ export default async function () {
 	}
 }
 
-const startRenderingAudio = (context: OfflineAudioContext) => {
+const startRenderingAudio = ( context: OfflineAudioContext ) => {
 	const renderTryMaxCount = 3
 	const renderRetryDelay = 500
 	const runningMaxAwaitTime = 500
 	const runningSufficientTime = 5000
 	let finalize = () => undefined as void
 
-	const resultPromise = new Promise<AudioBuffer>((resolve, reject) => {
+	const resultPromise = new Promise<AudioBuffer>( ( resolve, reject ) => {
 		let isFinalized = false
 		let renderTryCount = 0
 		let startedRunningAt = 0
@@ -67,9 +67,9 @@ const startRenderingAudio = (context: OfflineAudioContext) => {
 		context.oncomplete = ( event ) => resolve( event.renderedBuffer )
 
 		const startRunningTimeout = () => {
-			setTimeout(() => {
-				reject(makeInnerError(InnerErrorName.timeout))
-			}, Math.min(runningMaxAwaitTime, startedRunningAt + runningSufficientTime - Date.now()))
+			setTimeout( () => {
+				reject( makeInnerError( InnerErrorName.timeout ) )
+			}, Math.min( runningMaxAwaitTime, startedRunningAt + runningSufficientTime - Date.now() ) )
 		}
 
 		const tryRender = () => {
@@ -90,15 +90,15 @@ const startRenderingAudio = (context: OfflineAudioContext) => {
 						}
 
 						if (isFinalized && renderTryCount >= renderTryMaxCount) {
-							reject(makeInnerError(InnerErrorName.suspended))
+							reject( makeInnerError( InnerErrorName.suspended ) )
 						} else {
-							setTimeout(tryRender, renderTryCount)
+							setTimeout( tryRender, renderTryCount )
 						}
 						break
 					}
 				}
 			} catch (e) {
-				reject(e)
+				reject( e )
 			}
 		}
 
@@ -112,13 +112,13 @@ const startRenderingAudio = (context: OfflineAudioContext) => {
 				}
 			}
 		}
-	})
+	} )
 
-	return [resultPromise, finalize] as const
+	return [ resultPromise, finalize ] as const
 }
 
-const makeInnerError = (name: InnerErrorName) => {
-	const error = new Error(name)
+const makeInnerError = ( name: InnerErrorName ) => {
+	const error = new Error( name )
 	error.name = name
 	return error
 }

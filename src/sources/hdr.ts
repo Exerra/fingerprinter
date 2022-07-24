@@ -1,15 +1,15 @@
 export default function (): boolean {
-	if (doesMatch('high')) {
+	if (doesMatch( 'high' )) {
 		return true
 	}
-	
-	if (doesMatch('standard')) {
+
+	if (doesMatch( 'standard' )) {
 		return false
 	}
 
 	return false
 }
 
-const doesMatch = (value: string) => {
-	return matchMedia(`(dynamic-range: ${value})`).matches
+const doesMatch = ( value: string ) => {
+	return matchMedia( `(dynamic-range: ${value})` ).matches
 }

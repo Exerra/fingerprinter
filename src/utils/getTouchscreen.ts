@@ -8,7 +8,7 @@ export default function () {
 		// @ts-ignore
 		hasTouchScreen = navigator?.msMaxTouchPoints > 0
 	} else {
-		let mQ = window.matchMedia && matchMedia("(pointer:coarse)")
+		let mQ = window.matchMedia && matchMedia( "(pointer:coarse)" )
 		if (mQ && mQ.media === "(pointer:coarse)") {
 			hasTouchScreen = !!mQ.matches
 		} else if ("orientation" in window) {

@@ -19,13 +19,13 @@ export default async function () {
 			list: nav.languages
 		},
 		userAgent: nav.userAgent,
-		plugins: parsePlugins(nav.plugins),
+		plugins: parsePlugins( nav.plugins ),
 		capabilities: {
 			contacts: 'contacts' in navigator && 'ContactsManager' in window,
 			pdfViewer: nav.pdfViewerEnabled || false,
 			cookies: nav.cookieEnabled || false
 		},
-		mimeTypes: parseMimetypes(nav.mimeTypes) || [],
+		mimeTypes: parseMimetypes( nav.mimeTypes ) || [],
 		canvas: "",
 		bars: {
 			menubar: window.menubar.visible || "",
