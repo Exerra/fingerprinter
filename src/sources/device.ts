@@ -18,6 +18,15 @@ export default function () {
 				width: screen.width
 			}
 		},
-		colorDepth: screen.colorDepth
+		// @ts-ignore
+		memory: window.navigator.deviceMemory || 0,
+		color: {
+			depth: screen.colorDepth,
+			contrast: "",
+			gamut: "",
+			forcedColors: false,
+			hdr: false,
+			monochromeDepth: 0
+		},
 	}
 }

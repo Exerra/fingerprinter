@@ -6,6 +6,13 @@ import getDeviceInfo from "./sources/device";
 import fonts from "./sources/fonts";
 import audio from "./sources/audio";
 import webgl from "./sources/webgl";
+import contrast from "./sources/contrast";
+import color_gamut from "./sources/color_gamut";
+import forced_colors from "./sources/forced_colors";
+import hdr from "./sources/hdr";
+import monochrome from "./sources/monochrome";
+import reducedMotion from "./sources/reducedMotion";
+import math from "./sources/math";
 
 function syntaxHighlight(json) { // I lifted off of stack overflow and I do not want to make this look good
 	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -33,12 +40,21 @@ const asyncFunc = async () => {
 
 	browser.canvas = canvas()
 
+	// --- Colours ---
+	device.color.contrast = contrast()
+	device.color.gamut = color_gamut()
+	device.color.forcedColors = forced_colors()
+	device.color.hdr = hdr()
+	device.color.monochromeDepth = monochrome()
+
 	let final = {
 		browser,
 		device,
 		timezone,
 		audio: await audio(),
 		webgl: webgl(),
+		reducedMotion: reducedMotion(),
+		math: math(),
 		fonts: await fonts()
 	}
 

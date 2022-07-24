@@ -1,20 +1,8 @@
+import parseMimetypes from "../utils/parseMimetypes";
+import parsePlugins from "../utils/parsePlugins";
+
 export default async function () {
-	let plugins: string[] = []
 	let nav = window.navigator
-
-	Object.entries(nav.plugins).forEach(([key, entry]) => {
-		plugins.push(entry.name)
-	})
-
-	let mimetypes = []
-
-	for (let mimetype of nav.mimeTypes) {
-		mimetypes.push( {
-			description: mimetype.description,
-			type: mimetype.type,
-			suffixes: mimetype.suffixes
-		})
-	}
 
 	return {
 		vendor: nav.vendor || "",
@@ -31,13 +19,13 @@ export default async function () {
 			list: nav.languages
 		},
 		userAgent: nav.userAgent,
-		plugins,
+		plugins: parsePlugins(nav.plugins),
 		capabilities: {
 			contacts: 'contacts' in navigator && 'ContactsManager' in window,
 			pdfViewer: nav.pdfViewerEnabled || false,
 			cookies: nav.cookieEnabled || false
 		},
-		mimeTypes: mimetypes || [],
+		mimeTypes: parseMimetypes(nav.mimeTypes) || [],
 		canvas: "",
 		bars: {
 			menubar: window.menubar.visible || "",
