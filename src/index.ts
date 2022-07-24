@@ -4,7 +4,6 @@ import canvas from "./sources/canvas";
 import { encode } from "./utils/hash";
 import getDeviceInfo from "./sources/device";
 import fonts from "./sources/fonts";
-import contacts from "./sources/contacts";
 
 const asyncFunc = async () => {
 	let browser = await getBrowserInfo()
@@ -12,7 +11,6 @@ const asyncFunc = async () => {
 	let device = getDeviceInfo()
 
 	browser.canvas = canvas()
-	browser.capabilities.contacts = contacts()
 
 	let final = {
 		browser,
