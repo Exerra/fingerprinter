@@ -17,7 +17,15 @@ export default async function () {
 	}
 
 	return {
-		vendor: window.navigator.vendor || "",
+		vendor: nav.vendor || "",
+		app: {
+			codename: nav.appCodeName,
+			name: nav.appName,
+		},
+		product: {
+			name: nav.product,
+			sub: nav.productSub
+		},
 		language: {
 			current: nav.language,
 			list: nav.languages
@@ -36,6 +44,7 @@ export default async function () {
 			personalbar: window.personalbar.visible || "",
 			statusbar: window.statusbar.visible || "",
 			toolbar: window.toolbar.visible || ""
-		}
+		},
+		doNotTrack: nav.doNotTrack || "NC"
 	}
 }
