@@ -1,17 +1,19 @@
 import getTouchscreen from "../utils/getTouchscreen";
 
 export default function () {
+	let w = window
+	let nav = w.navigator
 	return {
 		touchscreen: getTouchscreen(),
 		cpu: {
 			// @ts-ignore
-			name: window.navigator.oscpu || "",
-			cores: window.navigator.hardwareConcurrency || 0
+			name: nav.oscpu || "",
+			cores: nav.hardwareConcurrency || 0
 		},
 		sizes: {
 			usable: {
-				height: window.outerHeight,
-				width: window.outerWidth,
+				height: w.outerHeight,
+				width: w.outerWidth,
 			},
 			screen: {
 				height: screen.height,
@@ -19,7 +21,7 @@ export default function () {
 			}
 		},
 		// @ts-ignore
-		memory: window.navigator.deviceMemory || 0,
+		memory: nav.deviceMemory || 0,
 		color: {
 			depth: screen.colorDepth,
 			contrast: "",
