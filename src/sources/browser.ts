@@ -6,6 +6,16 @@ export default async function () {
 		plugins.push(entry.name)
 	})
 
+	let mimetypes = []
+
+	for (let mimetype of nav.mimeTypes) {
+		mimetypes.push( {
+			description: mimetype.description,
+			type: mimetype.type,
+			suffixes: mimetype.suffixes
+		})
+	}
+
 	let obj: any = {
 		language: {
 			current: nav.language,
@@ -17,7 +27,7 @@ export default async function () {
 			contacts: 'contacts' in navigator && 'ContactsManager' in window,
 			pdfViewer: nav.pdfViewerEnabled || false
 		},
-		mimeTypes: nav.mimeTypes || {}
+		mimeTypes: mimetypes || []
 	}
 
 	return obj
