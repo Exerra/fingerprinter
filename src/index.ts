@@ -5,6 +5,7 @@ import { encode } from "./utils/hash";
 import getDeviceInfo from "./sources/device";
 import fonts from "./sources/fonts";
 import audio from "./sources/audio";
+import webgl from "./sources/webgl";
 
 function syntaxHighlight(json) { // I lifted off of stack overflow and I do not want to make this look good
 	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -37,6 +38,7 @@ const asyncFunc = async () => {
 		device,
 		timezone,
 		audio: await audio(),
+		webgl: webgl(),
 		fonts: await fonts()
 	}
 
