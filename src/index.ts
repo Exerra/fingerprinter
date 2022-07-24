@@ -5,7 +5,7 @@ import { encode } from "./utils/hash";
 import getDeviceInfo from "./sources/device";
 import fonts from "./sources/fonts";
 
-function syntaxHighlight(json) {
+function syntaxHighlight(json) { // I lifted off of stack overflow and I do not want to make this look good
 	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
 		var cls = 'number';
